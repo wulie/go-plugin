@@ -31,18 +31,21 @@ func main() {
 		Plugins:         pluginMap,
 		Cmd:             exec.Command("./plugin/plugin"),
 		Logger:          logger,
+		//StartTimeout: time.Millisecond,
 	})
 	defer client.Kill()
 	rpc, err := client.Client()
 	if err != nil {
-		panic(err)
+		fmt.Println("tttttttttttttttt", err)
+		return
+		//panic(err)
 	}
 	raw, err := rpc.Dispense("ifconfiger")
 	if err != nil {
 		panic(err)
 	}
-
 	ifconfig := raw.(common.Ifconfiger)
+
 	fmt.Println(ifconfig.Ifconfig())
 
 }
