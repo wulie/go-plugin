@@ -25,30 +25,11 @@ type IfconfigerRPC struct {
 }
 
 func (i *IfconfigerRPC) Ifconfig() []*NetInfo {
-	//var resp string
 	nets := make([]*NetInfo, 0)
 	err := i.client.Call("Plugin.Ifconfig", new(interface{}), &nets)
 	if err != nil {
 		panic(err)
 	}
-	//cmd := exec.Command("ifconfig")
-	//output, err := cmd.Output()
-	//if err != nil {
-	//	panic(err)
-	//}
-	//nets := make([]*NetInfo,0)
-	nets = append(nets, &NetInfo{
-		Name: "eth0",
-		Ip:   "192.168.100.169",
-		Mac:  "23:67:df:sd:67:23",
-	})
-	nets = append(nets, &NetInfo{
-		Name: "eth1",
-		Ip:   "192.168.0.169",
-		Mac:  "23:67:df:sd:67:67",
-	})
-	//resp = string(output)
-	//fmt.Println(nets)
 	return nets
 }
 

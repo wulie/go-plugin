@@ -13,10 +13,26 @@ type IfconfigerLocal struct {
 }
 
 func (i *IfconfigerLocal) Ifconfig() []*common.NetInfo {
+	nets := make([]*common.NetInfo, 0)
+
 	i.logger.Debug("message from IfconfigerLocal.Ifconfig   77777")
 	fmt.Println("666666666")
-
-	return make([]*common.NetInfo, 0)
+	nets = append(nets, &common.NetInfo{
+		Name: "eth0",
+		Ip:   "192.168.100.169",
+		Mac:  "23:67:df:sd:67:23",
+	})
+	nets = append(nets, &common.NetInfo{
+		Name: "eth1",
+		Ip:   "192.168.0.169",
+		Mac:  "23:67:df:sd:67:67",
+	})
+	nets = append(nets, &common.NetInfo{
+		Name: "eth2",
+		Ip:   "192.168.1.169",
+		Mac:  "23:67:df:sd:67:67",
+	})
+	return nets
 }
 
 var handshakeConfig = plugin.HandshakeConfig{
